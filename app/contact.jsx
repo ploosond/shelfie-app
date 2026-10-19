@@ -1,12 +1,14 @@
 import { Link } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import View from "../components/View";
+import Text from "../components/Text";
 
 const Contact = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Contact page</Text>
       <Link style={styles.link} href={"/"}>
-        Back Home
+        <Text>Back Home</Text>
       </Link>
     </View>
   );
