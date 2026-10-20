@@ -9,6 +9,7 @@ const AuthLayout = () => {
       <Stack
         screenOptions={{
           animation: "none",
+          headerShown: false,
         }}
       ></Stack>
     </>
