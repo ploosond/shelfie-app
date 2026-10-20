@@ -3,7 +3,7 @@ import { StyleSheet, useColorScheme } from "react-native";
 import { Colors } from "../constants/Colors";
 import { StatusBar } from "expo-status-bar";
 
-const TabLayout = () => {
+const ScreenLayout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
 
@@ -17,6 +17,7 @@ const TabLayout = () => {
         }}
       >
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="index"
           options={{
@@ -28,5 +29,5 @@ const TabLayout = () => {
   );
 };
 
-export default TabLayout;
+export default ScreenLayout;
 const styles = StyleSheet.create({});

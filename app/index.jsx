@@ -19,6 +19,9 @@ const Home = () => {
       <Link style={styles.link} href={"/register"}>
         <Text>Register Page</Text>
       </Link>
+      <Link style={styles.link} href={"/profile"}>
+        <Text>Profile Page</Text>
+      </Link>
     </View>
   );
 };
