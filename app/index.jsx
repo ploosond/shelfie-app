@@ -1,26 +1,23 @@
 const { StyleSheet } = require("react-native");
 import { Link } from "expo-router";
-import View from "../components/View";
-import Logo from "../components/Logo";
-import Space from "../components/Space";
-import Text from "../components/Text";
+import { View, Text, Spacer, Logo } from "../components";
 
 const Home = () => {
   return (
     <View style={styles.container}>
       <Logo />
-      <Space height={20} />
+      <Spacer height={20} />
       <Text style={styles.title} title={true}>
         The Number 1
       </Text>
-      <Space height={10} />
+      <Spacer height={10} />
       <Text>Reading List App</Text>
-      <Space />
-      <Link style={styles.link} href={"/about"}>
-        <Text>About Page</Text>
+      <Spacer />
+      <Link style={styles.link} href={"/login"}>
+        <Text>Login Page</Text>
       </Link>
-      <Link style={styles.link} href={"/contact"}>
-        <Text>Contact Page</Text>
+      <Link style={styles.link} href={"/register"}>
+        <Text>Register Page</Text>
       </Link>
     </View>
   );

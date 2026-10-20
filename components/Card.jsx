@@ -1,7 +1,7 @@
 import { View as NativeView, useColorScheme, StyleSheet } from "react-native";
 import { Colors } from "../constants/Colors";
 
-const Card = ({ style, ...props }) => {
+export const Card = ({ style, ...props }) => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
   return (
@@ -12,7 +12,6 @@ const Card = ({ style, ...props }) => {
   );
 };
 
-export default Card;
 const styles = StyleSheet.create({
   card: {
     borderRadius: 5,
