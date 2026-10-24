@@ -3,10 +3,19 @@ import { View, Spacer, Text } from "../../components";
 import { Link } from "expo-router";
 import { Colors } from "../../constants/Colors";
 import Pressable from "../../components/Pressable";
+import TextInput from "../../components/TextInput";
+import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { user } = useAuth();
+
   const handleSubmit = () => {
-    console.log("register form submitted");
+    console.log("current user", user);
+    console.log("login form submitted", email, password);
   };
   return (
     <View style={styles.container}>
@@ -14,6 +23,21 @@ const Login = () => {
       <Text title={true} style={styles.title}>
         Login to Your Account
       </Text>
+      <TextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder="Email"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <TextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder="Password"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={setPassword}
+      />
       <Pressable onPress={handleSubmit}>
         <Text style={{ color: "#f2f2f2" }}>Login</Text>
       </Pressable>
