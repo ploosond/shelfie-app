@@ -11,11 +11,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { user } = useAuth();
+  const { login } = useAuth();
 
-  const handleSubmit = () => {
-    console.log("current user", user);
-    console.log("login form submitted", email, password);
+  const handleSubmit = async () => {
+    try {
+      await login(email, password);
+    } catch (error) {
+      console.log("");
+    }
   };
   return (
     <View style={styles.container}>
