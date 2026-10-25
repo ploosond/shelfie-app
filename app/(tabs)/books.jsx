@@ -1,8 +1,17 @@
 import { StyleSheet } from "react-native";
 
 import { View, Text, Spacer } from "../../components";
+import { useEffect } from "react";
+import { useAppStore } from "../../store/useAppStore";
 
 const Books = () => {
+  const { books, fetchBooks } = useAppStore();
+
+  useEffect(() => {
+    fetchBooks();
+  }, [books, fetchBooks]);
+
+  console.log(books);
   return (
     <View style={styles.container} safe={true}>
       <Spacer />

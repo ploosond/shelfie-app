@@ -1,4 +1,4 @@
-import { ID, Permission } from "appwrite";
+import { ID, Permission, Query } from "appwrite";
 import { DATABASE_ID, TABLE_ID, tablesDB } from "../lib/appwrite";
 import { Role } from "react-native-appwrite";
 
@@ -6,23 +6,31 @@ export const createBooksSlice = (set, get) => ({
   books: [],
   isLoading: false,
   error: null,
-  fetchBooks: async () => {
+  fetchBooksById: async () => {
     try {
     } catch (error) {
-      console.log("Failed books fetch", error.message);
+      console.log("Failed books fetch  by Id", error.message);
     }
   },
-  fetchBook: async () => {
+  fetchBooks: async () => {
     try {
+      const user = get().user;
+      const books = await tablesDB.listRows({
+        databaseId: DATABASE_ID,
+        tableId: TABLE_ID,
+        queries: [Query.equal("userId", user.$id)],
+      });
+      set({ books: books.rows });
     } catch (error) {
-      console.log("Failed book fetch", error.message);
+      console.log("Failed books fetch", error.message);
+      throw error;
     }
   },
   createBook: async (data) => {
     set({ isLoading: true });
     try {
       const user = get().user;
-      const newBook = await tablesDB.createRow({
+      await tablesDB.createRow({
         databaseId: DATABASE_ID,
         tableId: TABLE_ID,
         rowId: ID.unique(),
