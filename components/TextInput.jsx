@@ -1,7 +1,7 @@
 import { TextInput as NativeTextInput, useColorScheme } from "react-native";
 import { Colors } from "../constants/Colors";
 
-const TextInput = ({ style, ...props }) => {
+export const TextInput = ({ style, ...props }) => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
   return (
@@ -20,4 +20,3 @@ const TextInput = ({ style, ...props }) => {
   );
 };
 
-export default TextInput;

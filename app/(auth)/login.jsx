@@ -2,8 +2,7 @@ import { StyleSheet } from "react-native";
 import { View, Spacer, Text } from "../../components";
 import { Link } from "expo-router";
 import { Colors } from "../../constants/Colors";
-import Pressable from "../../components/Pressable";
-import TextInput from "../../components/TextInput";
+import {Pressable, TextInput} from "../../components";
 import { useState } from "react";
 import { useAuth } from "../../store/useAuth";
 

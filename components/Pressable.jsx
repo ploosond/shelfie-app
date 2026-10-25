@@ -1,7 +1,7 @@
 import { Pressable as NativePressable, Text, StyleSheet } from "react-native";
 import { Colors } from "../constants/Colors";
 
-const Pressable = ({ style, ...props }) => {
+export const Pressable = ({ style, ...props }) => {
   return (
     <NativePressable
       style={({ pressed }) => [styles.btn, pressed && styles.pressed, style]}
@@ -22,4 +22,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Pressable;
