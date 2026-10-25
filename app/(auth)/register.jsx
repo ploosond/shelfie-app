@@ -4,13 +4,13 @@ import { Link } from "expo-router";
 import Pressable from "../../components/Pressable";
 import TextInput from "../../components/TextInput";
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../store/useAuth";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { register } = useAuth();
+  const register = useAuth((state) => state.register);
 
   const handleSubmit = async () => {
     try {

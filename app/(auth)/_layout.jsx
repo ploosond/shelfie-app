@@ -1,10 +1,9 @@
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../store/useAuth";
 
 const AuthLayout = () => {
-  const { user } = useAuth();
+  const user = useAuth((state) => state.user);
   console.log(user);
   return (
     <>

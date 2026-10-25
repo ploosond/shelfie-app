@@ -5,13 +5,13 @@ import { Colors } from "../../constants/Colors";
 import Pressable from "../../components/Pressable";
 import TextInput from "../../components/TextInput";
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../store/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login } = useAuth();
+  const login = useAuth((state) => state.login);
 
   const handleSubmit = async () => {
     try {
