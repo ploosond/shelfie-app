@@ -4,7 +4,7 @@ import { View, Text, Spacer, Pressable } from "../../components";
 import { useAuth } from "../../store/useAuth";
 
 const Profile = () => {
-  const user = useAuth((state) => state.user)
+  const user = useAuth((state) => state.user);
   const logout = useAuth((state) => state.logout);
   return (
     <View style={styles.container}>
@@ -13,13 +13,11 @@ const Profile = () => {
       </Text>
       <Spacer />
 
-
       <Text>Time to start reading some books...</Text>
       <Spacer />
       <Pressable onPress={logout}>
-        <Text style={{color: '#f2f2f2'}}>Logout</Text>
+        <Text style={{ color: "#f2f2f2" }}>Logout</Text>
       </Pressable>
-      
     </View>
   );
 };

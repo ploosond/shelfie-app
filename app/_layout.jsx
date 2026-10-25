@@ -9,16 +9,17 @@ const ScreenLayout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
 
-  const initAuth = useAuth((state) => state.initAuth)
+  const initAuth = useAuth((state) => state.initAuth);
 
   useEffect(() => {
-    initAuth()
-  },[initAuth])
+    initAuth();
+  }, [initAuth]);
 
   return (
     <>
       <StatusBar value="auto" />
       <Stack
+        initialRouteName="index"
         screenOptions={{
           headerStyle: { backgroundColor: theme.navBackground },
           headerTintColor: theme.title,

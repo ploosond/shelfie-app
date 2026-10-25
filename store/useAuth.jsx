@@ -6,6 +6,7 @@ export const useAuth = create((set, get) => ({
   user: null,
   error: null,
   isLoading: false,
+  authChecked: false,
   initAuth: async() => {
     set({isLoading: true})
     try{
@@ -14,7 +15,7 @@ export const useAuth = create((set, get) => ({
     }  catch(error) {
       set({user: null})
     } finally {
-      set({isLoading: false})
+      set({authChecked: true})
     }
   },
   register: async (email, password) => {
