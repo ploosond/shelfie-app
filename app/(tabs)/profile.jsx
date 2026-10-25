@@ -4,11 +4,12 @@ import { View, Text, Spacer, Pressable } from "../../components";
 import { useAuth } from "../../store/useAuth";
 
 const Profile = () => {
+  const user = useAuth((state) => state.user)
   const logout = useAuth((state) => state.logout);
   return (
     <View style={styles.container}>
       <Text title={true} style={styles.heading}>
-        Your Email
+        {user?.email}
       </Text>
       <Spacer />
 

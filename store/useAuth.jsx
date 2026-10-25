@@ -6,6 +6,17 @@ export const useAuth = create((set, get) => ({
   user: null,
   error: null,
   isLoading: false,
+  initAuth: async() => {
+    set({isLoading: true})
+    try{
+      const user = await account.get();
+      set({user})
+    }  catch(error) {
+      set({user: null})
+    } finally {
+      set({isLoading: false})
+    }
+  },
   register: async (email, password) => {
     set({ error: null, isLoading: true });
     try {

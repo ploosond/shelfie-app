@@ -2,10 +2,18 @@ import { Stack } from "expo-router";
 import { StyleSheet, useColorScheme } from "react-native";
 import { Colors } from "../constants/Colors";
 import { StatusBar } from "expo-status-bar";
+import { useAuth } from "../store/useAuth";
+import { useEffect } from "react";
 
 const ScreenLayout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
+
+  const initAuth = useAuth((state) => state.initAuth)
+
+  useEffect(() => {
+    initAuth()
+  },[initAuth])
 
   return (
     <>
