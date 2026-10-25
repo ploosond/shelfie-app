@@ -1,17 +1,17 @@
 import { StyleSheet } from "react-native";
 import { View, Spacer, Text } from "../../components";
 import { Link } from "expo-router";
-import {Pressable, TextInput} from "../../components";
+import { Pressable, TextInput } from "../../components";
 import { useState } from "react";
-import { useAuth } from "../../store/useAuth";
 import { Colors } from "../../constants/Colors";
+import { useAppStore } from "../../store/useAppStore";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const register = useAuth((state) => state.register);
-  const error = useAuth((state) => state.error);
+  const register = useAppStore((state) => state.register);
+  const error = useAppStore((state) => state.error);
 
   const handleSubmit = async () => {
     try {

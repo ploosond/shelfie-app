@@ -2,7 +2,6 @@ import { Tabs } from "expo-router";
 import { StyleSheet, useColorScheme } from "react-native";
 import { Colors } from "../../constants/Colors";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import { UserOnly } from "../../components/auth/UserOnly";
 
 const TabsLayout = () => {
   const colorScheme = useColorScheme();

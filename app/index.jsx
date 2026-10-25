@@ -1,10 +1,10 @@
 const { StyleSheet } = require("react-native");
 import { Link } from "expo-router";
 import { View, Text, Spacer, Logo } from "../components";
-import { useAuth } from "../store/useAuth";
+import { useAppStore } from "../store/useAppStore";
 
 const Home = () => {
-  const user = useAuth((state) => state.user);
+  const user = useAppStore((state) => state.user);
   const isLogged = user !== null;
   return (
     <View style={styles.container}>

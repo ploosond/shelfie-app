@@ -2,7 +2,7 @@ import { ID } from "appwrite";
 import { create } from "zustand";
 import { account } from "../lib/appwrite";
 
-export const useAuth = create((set, get) => ({
+export const createAuthSlice = (set, get) => ({
   user: null,
   error: null,
   isLoading: false,
@@ -74,4 +74,4 @@ export const useAuth = create((set, get) => ({
       set({ isLoading: false });
     }
   },
-}));
+});

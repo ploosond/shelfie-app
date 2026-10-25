@@ -1,9 +1,9 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useAuth } from "../../store/useAuth";
+import { useAppStore } from "../../store/useAppStore";
 
 const AuthLayout = () => {
-  const user = useAuth((state) => state.user);
+  const user = useAppStore((state) => state.user);
   console.log(user);
   return (
     <>

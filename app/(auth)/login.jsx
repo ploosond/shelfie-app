@@ -4,15 +4,15 @@ import { Link } from "expo-router";
 import { Colors } from "../../constants/Colors";
 import { Pressable, TextInput } from "../../components";
 import { useState } from "react";
-import { useAuth } from "../../store/useAuth";
+import { useAppStore } from "../../store/useAppStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = useAuth((state) => state.login);
-  const error = useAuth((state) => state.error);
-  const isLoading = useAuth((state) => state.isLoading);
+  const login = useAppStore((state) => state.login);
+  const error = useAppStore((state) => state.error);
+  const isLoading = useAppStore((state) => state.isLoading);
 
   const handleSubmit = async () => {
     try {

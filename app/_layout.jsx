@@ -2,17 +2,17 @@ import { Stack } from "expo-router";
 import { StyleSheet, useColorScheme } from "react-native";
 import { Colors } from "../constants/Colors";
 import { StatusBar } from "expo-status-bar";
-import { useAuth } from "../store/useAuth";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "../components";
+import { useAppStore } from "../store/useAppStore";
 
 const ScreenLayout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
 
-  const user = useAuth((state) => state.user);
-  const authChecked = useAuth((state) => state.authChecked);
-  const initAuth = useAuth((state) => state.initAuth);
+  const user = useAppStore((state) => state.user);
+  const authChecked = useAppStore((state) => state.authChecked);
+  const initAuth = useAppStore((state) => state.initAuth);
 
   useEffect(() => {
     initAuth();

@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 
 import { View, Text, Spacer, Pressable } from "../../components";
-import { useAuth } from "../../store/useAuth";
+import { useAppStore } from "../../store/useAppStore";
 
 const Profile = () => {
-  const user = useAuth((state) => state.user);
-  const logout = useAuth((state) => state.logout);
+  const user = useAppStore((state) => state.user);
+  const logout = useAppStore((state) => state.logout);
   return (
     <View style={styles.container}>
       <Text title={true} style={styles.heading}>
