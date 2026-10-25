@@ -1,8 +1,11 @@
 const { StyleSheet } = require("react-native");
 import { Link } from "expo-router";
 import { View, Text, Spacer, Logo } from "../components";
+import { useAuth } from "../store/useAuth";
 
 const Home = () => {
+  const user = useAuth((state) => state.user);
+  const isLogged = user !== null;
   return (
     <View style={styles.container}>
       <Logo />
@@ -19,7 +22,7 @@ const Home = () => {
       <Link style={styles.link} href={"/register"}>
         <Text>Register Page</Text>
       </Link>
-      <Link style={styles.link} href={"/profile"}>
+      <Link style={styles.link} href={isLogged ? "/profile" : "/login"}>
         <Text>Profile Page</Text>
       </Link>
     </View>

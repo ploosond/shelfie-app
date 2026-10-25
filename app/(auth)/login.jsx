@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
-import { View, Spacer, Text } from "../../components";
+import { View, Spacer, Text, ActivityIndicator } from "../../components";
 import { Link } from "expo-router";
 import { Colors } from "../../constants/Colors";
-import {Pressable, TextInput} from "../../components";
+import { Pressable, TextInput } from "../../components";
 import { useState } from "react";
 import { useAuth } from "../../store/useAuth";
 
@@ -12,6 +12,7 @@ const Login = () => {
 
   const login = useAuth((state) => state.login);
   const error = useAuth((state) => state.error);
+  const isLoading = useAuth((state) => state.isLoading);
 
   const handleSubmit = async () => {
     try {
@@ -37,12 +38,17 @@ const Login = () => {
       <TextInput
         style={{ width: "80%", marginBottom: 20 }}
         placeholder="Password"
+        autoCapitalize="none"
         secureTextEntry={true}
         value={password}
         onChangeText={setPassword}
       />
-      <Pressable onPress={handleSubmit}>
-        <Text style={{ color: "#f2f2f2" }}>Login</Text>
+      <Pressable onPress={handleSubmit} disabled={isLoading}>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <Text style={{ color: "#f2f2f2" }}>Login</Text>
+        )}
       </Pressable>
       <Spacer />
       {error && <Text style={styles.error}>{error}</Text>}

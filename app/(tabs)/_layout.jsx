@@ -8,8 +8,9 @@ const TabsLayout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
   return (
-    <UserOnly>
+    <>
       <Tabs
+        initialRouteName="profile"
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
@@ -61,7 +62,7 @@ const TabsLayout = () => {
           }}
         />
       </Tabs>
-    </UserOnly>
+    </>
   );
 };
 

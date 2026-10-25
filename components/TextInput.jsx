@@ -6,6 +6,7 @@ export const TextInput = ({ style, ...props }) => {
   const theme = Colors[colorScheme] ?? Colors.light;
   return (
     <NativeTextInput
+      placeholderTextColor={theme.text}
       style={[
         {
           backgroundColor: theme.uiBackground,
@@ -19,4 +20,3 @@ export const TextInput = ({ style, ...props }) => {
     />
   );
 };
-

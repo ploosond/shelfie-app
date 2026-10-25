@@ -7,15 +7,14 @@ export const useAuth = create((set, get) => ({
   error: null,
   isLoading: false,
   authChecked: false,
-  initAuth: async() => {
-    set({isLoading: true})
-    try{
+  initAuth: async () => {
+    try {
       const user = await account.get();
-      set({user})
-    }  catch(error) {
-      set({user: null})
+      set({ user });
+    } catch (error) {
+      set({ user: null });
     } finally {
-      set({authChecked: true})
+      set({ authChecked: true });
     }
   },
   register: async (email, password) => {
@@ -36,19 +35,29 @@ export const useAuth = create((set, get) => ({
     }
   },
   login: async (email, password) => {
+    console.log("1. Login started");
+
     set({ error: null, isLoading: true });
     try {
+      console.log("2. Creating session");
+
       await account.createEmailPasswordSession({
         email,
         password,
       });
+      console.log("3. Session created");
+
       const user = await account.get();
+      console.log("4. User fetched");
+
       set({ user });
     } catch (error) {
       console.log("Login failed:", error.message);
       set({ error: error.message });
       throw error;
     } finally {
+      console.log("5. Resetting loading");
+
       set({ isLoading: false });
     }
   },
