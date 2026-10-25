@@ -5,12 +5,14 @@ import Pressable from "../../components/Pressable";
 import TextInput from "../../components/TextInput";
 import { useState } from "react";
 import { useAuth } from "../../store/useAuth";
+import { Colors } from "../../constants/Colors";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const register = useAuth((state) => state.register);
+  const error = useAuth((state) => state.error);
 
   const handleSubmit = async () => {
     try {
@@ -43,6 +45,8 @@ const Register = () => {
       <Pressable onPress={handleSubmit}>
         <Text style={{ color: "#f2f2f2" }}>Register</Text>
       </Pressable>
+      <Spacer />
+      {error && <Text style={styles.error}>{error}</Text>}
       <Spacer height={100} />
       <Link href={"/login"}>
         <Text style={{ textAlign: "center" }}>Login instead</Text>
@@ -61,6 +65,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     marginBottom: 30,
+  },
+  error: {
+    color: Colors.warning,
+    padding: 10,
+    backgroundColor: "#f5c1c8",
+    borderColor: Colors.warning,
+    borderWidth: 1,
+    borderRadius: 6,
+    marginHorizontal: 10,
   },
 });
 

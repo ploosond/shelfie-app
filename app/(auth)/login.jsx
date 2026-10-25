@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const login = useAuth((state) => state.login);
+  const error = useAuth((state) => state.error);
 
   const handleSubmit = async () => {
     try {
@@ -44,6 +45,8 @@ const Login = () => {
       <Pressable onPress={handleSubmit}>
         <Text style={{ color: "#f2f2f2" }}>Login</Text>
       </Pressable>
+      <Spacer />
+      {error && <Text style={styles.error}>{error}</Text>}
       <Spacer height={100} />
       <Link href={"/register"}>
         <Text style={{ textAlign: "center" }}>Register instead</Text>
@@ -70,6 +73,15 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.8,
+  },
+  error: {
+    color: Colors.warning,
+    padding: 10,
+    backgroundColor: "#f5c1c8",
+    borderColor: Colors.warning,
+    borderWidth: 1,
+    borderRadius: 6,
+    marginHorizontal: 10,
   },
 });
 
