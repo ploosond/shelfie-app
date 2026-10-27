@@ -4,15 +4,56 @@ import { View, Text, Spacer, Card } from "../../components";
 import { useEffect } from "react";
 import { useAppStore } from "../../store/useAppStore";
 import { Colors } from "../../constants/Colors";
+import { client, DATABASE_ID, TABLE_ID, realtime } from "../../lib/appwrite";
+import { Channel } from "react-native-appwrite";
 
 const Books = () => {
-  const { books, fetchBooks } = useAppStore();
+  const user = useAppStore((state) => state.user);
+  const books = useAppStore((state) => state.books);
+  const fetchBooks = useAppStore((state) => state.fetchBooks);
+  const setBooks = useAppStore((state) => state.setBooks);
 
   useEffect(() => {
-    fetchBooks();
-  }, [books, fetchBooks]);
+    if (!user) {
+      useAppStore.setState({ books: [] });
+      return;
+    }
 
-  console.log(books);
+    fetchBooks();
+
+    const channel = `tablesdb.${DATABASE_ID}.tables.${TABLE_ID}.rows`;
+
+    const unsubscribe = realtime.subscribe(channel, (response) => {
+      const { events, payload } = response;
+
+      if (events.some((event) => event.includes(".create"))) {
+        useAppStore.setState((state) => {
+          if (state.books.some((book) => book.$id === payload.$id)) {
+            return state;
+          }
+
+          return { books: [...state.books, payload] };
+        });
+      }
+
+      if (events.some((event) => event.includes(".delete"))) {
+        useAppStore.setState((state) => ({
+          books: state.books.filter((book) => book.$id !== payload.$id),
+        }));
+      }
+
+      if (events.some((event) => event.includes(".update"))) {
+        useAppStore.setState((state) => ({
+          books: state.books.map((book) =>
+            book.$id === payload.$id ? payload : book,
+          ),
+        }));
+      }
+    });
+
+    return () => unsubscribe();
+  }, [user?.$id, fetchBooks]);
+
   return (
     <View style={styles.container} safe={true}>
       <Spacer />

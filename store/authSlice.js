@@ -1,4 +1,4 @@
-import { ID } from "appwrite";
+import { ID } from "react-native-appwrite";
 import { create } from "zustand";
 import { account } from "../lib/appwrite";
 

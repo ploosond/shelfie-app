@@ -1,5 +1,5 @@
-import { ID, Permission, Query } from "appwrite";
-import { DATABASE_ID, TABLE_ID, tablesDB } from "../lib/appwrite";
+import { ID, Permission, Query } from "react-native-appwrite";
+import { DATABASE_ID, TABLE_ID, tablesDB, client } from "../lib/appwrite";
 import { Role } from "react-native-appwrite";
 
 export const createBooksSlice = (set, get) => ({
