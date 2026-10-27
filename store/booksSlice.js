@@ -4,10 +4,18 @@ import { Role } from "react-native-appwrite";
 
 export const createBooksSlice = (set, get) => ({
   books: [],
+  selectedBook: null,
   isLoading: false,
   error: null,
-  fetchBooksById: async () => {
+  fetchBooksById: async (id) => {
     try {
+      const book = await tablesDB.getRow({
+        databaseId: DATABASE_ID,
+        tableId: TABLE_ID,
+        rowId: id,
+      });
+
+      set({ selectedBook: book });
     } catch (error) {
       console.log("Failed books fetch  by Id", error.message);
     }
