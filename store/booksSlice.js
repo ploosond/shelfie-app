@@ -58,6 +58,11 @@ export const createBooksSlice = (set, get) => ({
   },
   deleteBook: async (id) => {
     try {
+      await tablesDB.deleteRow({
+        databaseId: DATABASE_ID,
+        tableId: TABLE_ID,
+        rowId: id,
+      });
     } catch (error) {
       console.log("Failed book delete", error.message);
     }

@@ -7,14 +7,23 @@ import {
   Spacer,
   ActivityIndicator,
 } from "../../../components";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useAppStore } from "../../../store/useAppStore";
 import { useEffect } from "react";
+import { Text as NativeText } from "react-native";
+import { Colors } from "../../../constants/Colors";
 
 const Book = () => {
   const { id } = useLocalSearchParams();
   const selectedBook = useAppStore((state) => state.selectedBook);
   const fetchBooksById = useAppStore((state) => state.fetchBooksById);
+  const deleteBook = useAppStore((state) => state.deleteBook);
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    await deleteBook(id);
+    router.replace("/books");
+  };
 
   useEffect(() => {
     fetchBooksById(id);
@@ -40,6 +49,11 @@ const Book = () => {
 
         <Text>{selectedBook.description}</Text>
       </Card>
+      <Pressable style={styles.delete} onPress={handleDelete}>
+        <NativeText style={{ color: "#fff", textAlign: "center" }}>
+          Delete Book
+        </NativeText>
+      </Pressable>
     </View>
   );
 };
@@ -57,5 +71,11 @@ const styles = StyleSheet.create({
   },
   card: {
     margin: 20,
+  },
+  delete: {
+    marginTop: 40,
+    backgroundColor: Colors.warning,
+    width: 200,
+    alignSelf: "center",
   },
 });
