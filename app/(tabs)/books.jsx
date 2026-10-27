@@ -4,14 +4,14 @@ import { View, Text, Spacer, Card } from "../../components";
 import { useEffect } from "react";
 import { useAppStore } from "../../store/useAppStore";
 import { Colors } from "../../constants/Colors";
-import { client, DATABASE_ID, TABLE_ID, realtime } from "../../lib/appwrite";
-import { Channel } from "react-native-appwrite";
+import { DATABASE_ID, TABLE_ID, realtime } from "../../lib/appwrite";
+import { useRouter } from "expo-router";
 
 const Books = () => {
   const user = useAppStore((state) => state.user);
   const books = useAppStore((state) => state.books);
   const fetchBooks = useAppStore((state) => state.fetchBooks);
-  const setBooks = useAppStore((state) => state.setBooks);
+  const router = useRouter();
 
   useEffect(() => {
     if (!user) {
@@ -66,7 +66,7 @@ const Books = () => {
         keyExtractor={(item) => item.$id}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <Pressable>
+          <Pressable onPress={() => router.push(`/books/${item.$id}`)}>
             <Card style={styles.card}>
               <Text style={styles.title}>{item.title}</Text>
               <Text>Written by {item.author}</Text>
